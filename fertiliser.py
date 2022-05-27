@@ -7,7 +7,7 @@ from xgboost import XGBClassifier
 import numpy as np
 
 def recommend_fertiliser(lst):
-    df = pd.read_csv('dataset\Fertilizer Prediction.csv')
+    df = pd.read_csv('dataset/Fertilizer Prediction.csv')
     features = ['Temparature', 'Humidity ', 'Moisture', 'Soil Type', 'Crop Type','Nitrogen', 'Potassium', 'Phosphorous']
     label = ['Fertilizer Name']
     X = df[features].copy()
