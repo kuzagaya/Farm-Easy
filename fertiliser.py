@@ -1,5 +1,8 @@
 import streamlit as st
 import pickle
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+from xgboost import XGBClassifier
 import numpy as np
 
 def recommend_fertiliser(lst):
