@@ -1,1 +1,1 @@
-# Farm-Easy
+# FarmEasy
