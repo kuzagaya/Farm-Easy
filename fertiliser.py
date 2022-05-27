@@ -1,16 +1,31 @@
 import streamlit as st
 import pickle
+import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 from xgboost import XGBClassifier
 import numpy as np
 
 def recommend_fertiliser(lst):
-    loaded_model = pickle.load(open('models/XGBModel.pkl','rb'))
-    col_transformer = pickle.load(open('models/col_transformer.pkl','rb'))
+    df = pd.read_csv('dataset\Fertilizer Prediction.csv')
+    features = ['Temparature', 'Humidity ', 'Moisture', 'Soil Type', 'Crop Type','Nitrogen', 'Potassium', 'Phosphorous']
+    label = ['Fertilizer Name']
+    X = df[features].copy()
+    y = df[label].copy()
+    from sklearn.compose import ColumnTransformer
+    from sklearn.preprocessing import OneHotEncoder
+    ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [3,4])], remainder='passthrough')
+    X = np.array(ct.fit_transform(X))
+
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state =42)
+    from xgboost import XGBClassifier
+    model = XGBClassifier()
+    model.fit(X_train, y_train)
     value = np.array(lst)
-    value = col_transformer.transform([value])
-    ans = loaded_model.predict(value)
+
+    value = ct.transform([value])
+    ans = model.predict(value)
     return ans
 
 def fertiliser_app():
@@ -34,12 +49,6 @@ def fertiliser_app():
         ans = recommend_fertiliser(lst)
         st.success(f'Fertiliser Recommended: {ans[0].capitalize()}' )
         st.snow()
-
-
-
-
-
-
 
 
 
