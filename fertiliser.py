@@ -6,7 +6,7 @@ from xgboost import XGBClassifier
 import numpy as np
 
 def recommend_fertiliser(lst):
-    loaded_model = pickle.load(open('models\XGBModel.pkl','rb'))
+    loaded_model = pickle.load(open('models XGBModel.pkl','rb'))
     col_transformer = pickle.load(open('models\col_transformer.pkl','rb'))
     value = np.array(lst)
     value = col_transformer.transform([value])
