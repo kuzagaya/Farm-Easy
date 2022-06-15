@@ -1,8 +1,7 @@
 
 # Farm-Easy🌾
-
-In this project we use Machine Learning to recommend the which crop to grow based on 
-the soil propertied and this also recommend best fertiliser for crop with given soil properties
+In this project, we use Machine Learning to recommend which crop to grow based on
+the soil properties and this also recommend the best fertilizer for crops with given soil properties
 
 
 
