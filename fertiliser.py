@@ -26,6 +26,7 @@ def recommend_fertiliser(lst):
 
     value = ct.transform([value])
     ans = model.predict(value)
+    
     return ans
 
 def fertiliser_app():
